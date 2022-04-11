@@ -1,58 +1,59 @@
 object ProjectExportDialog: TProjectExportDialog
   Left = 0
   Top = 0
-  ActiveControl = edtApplicationTitle
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Project Export'
-  ClientHeight = 336
-  ClientWidth = 619
+  ClientHeight = 417
+  ClientWidth = 820
   Color = clBtnFace
-  Constraints.MaxHeight = 375
-  Constraints.MaxWidth = 635
-  Constraints.MinHeight = 375
-  Constraints.MinWidth = 635
+  Constraints.MaxHeight = 456
+  Constraints.MaxWidth = 836
+  Constraints.MinHeight = 456
+  Constraints.MinWidth = 836
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object spHeader: TShape
     AlignWithMargins = True
     Left = 0
-    Top = 65
-    Width = 619
+    Top = 80
+    Width = 820
     Height = 1
     Margins.Left = 0
-    Margins.Top = 5
+    Margins.Top = 0
     Margins.Right = 0
-    Margins.Bottom = 5
+    Margins.Bottom = 0
     Align = alTop
-    ExplicitLeft = 232
-    ExplicitTop = 336
-    ExplicitWidth = 65
+    ExplicitTop = 65
+    ExplicitWidth = 627
   end
   object pnlHeader: TPanel
     Left = 0
     Top = 0
-    Width = 619
-    Height = 60
+    Width = 820
+    Height = 80
+    Margins.Left = 5
+    Margins.Top = 5
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object imgExport: TImage
       AlignWithMargins = True
-      Left = 5
-      Top = 5
-      Width = 50
-      Height = 50
-      Margins.Left = 5
-      Margins.Top = 5
+      Left = 8
+      Top = 8
+      Width = 54
+      Height = 64
+      Margins.Left = 8
+      Margins.Top = 8
       Margins.Right = 0
-      Margins.Bottom = 5
+      Margins.Bottom = 8
       Align = alLeft
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
@@ -2199,13 +2200,15 @@ object ProjectExportDialog: TProjectExportDialog
         98A0C83E3C7DCB9CFE1305E49ECDB99D5F55F7414D0000000849444154CFCDFA
         FF3A013EC34395F1210000000049454E44AE426082}
       Proportional = True
-      ExplicitLeft = 8
+      ExplicitLeft = 5
+      ExplicitHeight = 69
     end
     object lblProjectName: TLabel
-      Left = 66
-      Top = 39
-      Width = 57
+      Left = 70
+      Top = 31
+      Width = 548
       Height = 21
+      AutoSize = False
       Caption = 'Project1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -2215,8 +2218,8 @@ object ProjectExportDialog: TProjectExportDialog
       ParentFont = False
     end
     object lblExport: TLabel
-      Left = 66
-      Top = 10
+      Left = 70
+      Top = 8
       Width = 129
       Height = 25
       Caption = 'Project Export'
@@ -2227,153 +2230,214 @@ object ProjectExportDialog: TProjectExportDialog
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object llblNotification: TLinkLabel
+      Left = 498
+      Top = 58
+      Width = 314
+      Height = 19
+      Caption = 
+        'Install <a href="https://github.com/Embarcadero/DelphiVCL4Python' +
+        '">DelphiVCL for Python</a> and/or <a href="https://github.com/Em' +
+        'barcadero/DelphiFMX4Python">DelphiFMX for Python</a>.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnLinkClick = llblNotificationLinkClick
+    end
   end
   object plnFooter: TPanel
     Left = 0
-    Top = 296
-    Width = 619
+    Top = 377
+    Width = 820
     Height = 40
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 5
+    TabOrder = 1
     object btnCancel: TButton
-      Left = 529
+      AlignWithMargins = True
+      Left = 727
       Top = 6
       Width = 85
-      Height = 25
+      Height = 28
+      Margins.Top = 6
+      Margins.Right = 8
+      Margins.Bottom = 6
+      Align = alRight
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
     end
     object btnExport: TButton
-      Left = 438
+      AlignWithMargins = True
+      Left = 636
       Top = 6
       Width = 85
-      Height = 25
+      Height = 28
+      Margins.Top = 6
+      Margins.Bottom = 6
+      Align = alRight
       Caption = 'Export'
       TabOrder = 0
       OnClick = btnExportClick
     end
+    object cbShowExportedFiles: TCheckBox
+      Left = 8
+      Top = 12
+      Width = 187
+      Height = 17
+      Caption = 'Show exported files in explorer.'
+      TabOrder = 2
+    end
   end
-  object pnlAppDir: TPanel
+  object pnlContents: TPanel
     Left = 0
-    Top = 131
-    Width = 619
-    Height = 60
-    Align = alTop
+    Top = 81
+    Width = 820
+    Height = 296
+    Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    object lblApplicationDirectory: TLabel
+    object lbForms: TListBox
+      AlignWithMargins = True
       Left = 8
       Top = 3
-      Width = 115
-      Height = 15
-      Caption = 'Application Directory:'
-    end
-    object btnSelectDir: TSpeedButton
-      Left = 588
-      Top = 23
-      Width = 26
-      Height = 25
-      Caption = '...'
-      OnClick = btnSelectDirClick
-    end
-    object edtApplicationDirectory: TEdit
-      Left = 8
-      Top = 24
-      Width = 577
-      Height = 23
-      Enabled = False
+      Width = 187
+      Height = 290
+      Margins.Left = 8
+      Align = alLeft
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      ItemHeight = 15
       TabOrder = 0
     end
-  end
-  object pnlAppSettings: TPanel
-    Left = 0
-    Top = 71
-    Width = 619
-    Height = 60
-    Align = alTop
-    BevelOuter = bvNone
-    TabOrder = 1
-    object lblAppTitle: TLabel
-      Left = 8
-      Top = 3
-      Width = 89
-      Height = 15
-      Caption = 'Application Title:'
-    end
-    object lblAppMainForm: TLabel
-      Left = 314
-      Top = 3
-      Width = 125
-      Height = 15
-      Caption = 'Application Main Form:'
-    end
-    object edtApplicationTitle: TEdit
-      Left = 8
-      Top = 24
-      Width = 300
-      Height = 23
-      TabOrder = 0
-    end
-    object cbApplicationMainForm: TComboBox
-      Left = 314
-      Top = 24
-      Width = 300
-      Height = 23
+    object pnlClient: TPanel
+      Left = 198
+      Top = 0
+      Width = 622
+      Height = 296
+      Align = alClient
+      BevelOuter = bvNone
       TabOrder = 1
-    end
-  end
-  object pnlFormFileKind: TPanel
-    Left = 0
-    Top = 232
-    Width = 619
-    Height = 60
-    Align = alTop
-    BevelOuter = bvNone
-    TabOrder = 4
-    object lblFormFileKind: TLabel
-      Left = 8
-      Top = 3
-      Width = 135
-      Height = 15
-      Caption = 'Form file kind (dfm/fmx):'
-    end
-    object rgFormFileKind: TRadioGroup
-      Left = 8
-      Top = 20
-      Width = 137
-      Height = 38
-      BiDiMode = bdLeftToRight
-      Columns = 2
-      ItemIndex = 0
-      Items.Strings = (
-        'Text'
-        'Binary')
-      ParentBiDiMode = False
-      TabOrder = 0
-    end
-  end
-  object pnlExpOpts: TPanel
-    Left = 0
-    Top = 191
-    Width = 619
-    Height = 41
-    Align = alTop
-    BevelOuter = bvNone
-    TabOrder = 3
-    object lblExpOpts: TLabel
-      Left = 8
-      Top = 6
-      Width = 156
-      Height = 21
-      Caption = 'Exportation options:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
+      object pnlAppDir: TPanel
+        Left = 0
+        Top = 60
+        Width = 622
+        Height = 60
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 0
+        object lblApplicationDirectory: TLabel
+          Left = 8
+          Top = 3
+          Width = 115
+          Height = 15
+          Caption = 'Application Directory:'
+        end
+        object edtApplicationDirectory: TEdit
+          Left = 8
+          Top = 24
+          Width = 573
+          Height = 23
+          Enabled = False
+          TabOrder = 0
+        end
+        object btnSelectDir: TButton
+          AlignWithMargins = True
+          Left = 584
+          Top = 23
+          Width = 30
+          Height = 25
+          Margins.Top = 2
+          Margins.Right = 8
+          Margins.Bottom = 12
+          Caption = '...'
+          TabOrder = 1
+          OnClick = btnSelectDirClick
+        end
+      end
+      object pnlAppSettings: TPanel
+        Left = 0
+        Top = 0
+        Width = 622
+        Height = 60
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 1
+        object lblAppTitle: TLabel
+          Left = 8
+          Top = 3
+          Width = 89
+          Height = 15
+          Caption = 'Application Title:'
+        end
+        object lblAppMainForm: TLabel
+          Left = 314
+          Top = 3
+          Width = 125
+          Height = 15
+          Caption = 'Application Main Form:'
+        end
+        object edtApplicationTitle: TEdit
+          Left = 8
+          Top = 24
+          Width = 300
+          Height = 23
+          TabOrder = 0
+        end
+        object cbApplicationMainForm: TComboBox
+          Left = 314
+          Top = 24
+          Width = 300
+          Height = 23
+          TabOrder = 1
+        end
+      end
+      object pnlFormFileKind: TPanel
+        Left = 0
+        Top = 120
+        Width = 622
+        Height = 60
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 2
+        object lblFormFileKind: TLabel
+          Left = 8
+          Top = 3
+          Width = 132
+          Height = 15
+          Caption = 'Form file kind (dfm/fmx)'
+        end
+        object Label1: TLabel
+          Left = 98
+          Top = 25
+          Width = 33
+          Height = 15
+          Caption = 'Binary'
+          OnClick = Label1Click
+        end
+        object Label2: TLabel
+          Left = 15
+          Top = 25
+          Width = 21
+          Height = 15
+          Alignment = taRightJustify
+          Caption = 'Text'
+          OnClick = Label2Click
+        end
+        object swFormFileKind: TToggleSwitch
+          Left = 42
+          Top = 25
+          Width = 50
+          Height = 20
+          ShowStateCaption = False
+          State = tssOn
+          TabOrder = 0
+        end
+      end
     end
   end
   object FileOpenDialog1: TFileOpenDialog
@@ -2382,7 +2446,7 @@ object ProjectExportDialog: TProjectExportDialog
     OkButtonLabel = 'Select'
     Options = [fdoPickFolders, fdoForceFileSystem, fdoPathMustExist]
     Title = 'Select Project Directory'
-    Left = 552
-    Top = 11
+    Left = 560
+    Top = 3
   end
 end
